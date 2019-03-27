@@ -1,0 +1,10 @@
+{% extends 'generic/base.html' %}
+
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+<div>
+    <h3>{{ book.title}} : {{ book.author }}</h3>
+    <h2>{{ book.status }}</h2>
+</div>
+{% endblock content %}
