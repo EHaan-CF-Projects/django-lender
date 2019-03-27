@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lender_project',
-    'lender_books_app'
+    'lender_books_app',
+    'django_registration'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Django Registraion Settings
+ACCOUNT_ACTIVATION_DAYS = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
