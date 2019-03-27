@@ -10,6 +10,6 @@ def book_list_view(request):
 
 def book_detail_view(request, pk=None):
     context = {
-        'book' : get_object_or_404(Book, pk=id),
+        'book' : get_object_or_404(Book, id=pk),
     }
     return render(request, 'books/book_detail.html', context)
