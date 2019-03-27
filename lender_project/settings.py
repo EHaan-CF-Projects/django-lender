@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lender_project',
-    'lender_books_app'
+    'lender_books_app',
 ]
 
 MIDDLEWARE = [

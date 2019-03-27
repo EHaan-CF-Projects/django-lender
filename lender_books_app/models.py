@@ -18,6 +18,7 @@ class Book(models.Model):
     status = models.CharField(choices=STATES, default='available', max_length=48)
 
     date_added = models.DateTimeField(default=now)
+    date_modified = models.DateTimeField(auto_now=True)
     last_borrowed = models.DateTimeField(auto_now=True)
 
 
