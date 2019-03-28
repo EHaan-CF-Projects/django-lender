@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Book(models.Model):
     """
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books', null=True)
     title = models.CharField(max_length=48)
     author = models.CharField(max_length=48)
     year = models.IntegerField(default=0000)
