@@ -6,5 +6,5 @@ register = template.Library()
 
 
 @register.filter
-def get_date_string(value):
-    value = value[::-1]
+def get_date(value):
+    return value.strftime('%b %d %Y')

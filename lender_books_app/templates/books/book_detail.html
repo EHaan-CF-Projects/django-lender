@@ -1,5 +1,6 @@
 {% extends 'generic/base.html' %}
-{% load template_tag %}
+{% load tz %}
+{% load template_extras %}
 
 
 {% block title %}Detail{% endblock title %}
@@ -8,8 +9,8 @@
 <div>
     <h3><span>{{ book.title}}</span> by {{ book.author }}</h3>
     <h2>Status: {{ book.status }}</h2>
-    <p>Added to collection: {{ book.date_added | get_day_string }}</p>
-    <p>Last checked out: {{ book.last_borrowed | get_day_string }}</p>
+    <p>Added to collection: {{ book.date_added | get_date }}</p>
+    <p>Last checked out: {{ book.last_borrowed | get_date }}</p>
     
 </div>
 {% endblock content %}
