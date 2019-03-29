@@ -30,6 +30,19 @@ class TestBookModel(TestCase):
         self.assertEqual(book_one.year, 1990)
         self.assertEqual(book_two.year, 2000)
 
+    def test_book_user(self):
+        book_one = Book.objects.get(title='Book Title 1')
+        book_two = Book.objects.get(title='Book Title 2')
+        self.assertEqual(book_one.user.username, 'Kaja')
+        self.assertEqual(book_two.user.username, 'Kaja')
+
+    # ---------------------------->>> How do I test the password hash?
+    # def test_book_user(self):
+    #     book_one = Book.objects.get(title='Book Title 1')
+    #     book_two = Book.objects.get(title='Book Title 2')
+    #     self.assertEqual(book_one.user.password, 'Schwartzekatze')
+    #     self.assertEqual(book_two.user.password, 'Schwartzekatze')
+
 class TestBookViews(TestCase):
     def setUp(self):
         self.request = RequestFactory()
@@ -37,37 +50,40 @@ class TestBookViews(TestCase):
         Book.objects.create(title='Book Title 1', author='Author', year='1990', user=self.user)
         Book.objects.create(title='Book Title 2', author='Author 2', year='2000', user=self.user)
 
+    # Book Detail View Tests
     def test_book_detail_view_context(self):
         request = self.request.get('')
         request.user = self.user
         response = book_detail_view(request, f'{ Book.objects.get(title="Book Title 1").id }')
         self.assertIn(b'Author', response.content)
 
-    def test_book_list_view_context(self):
-        request = self.request.get('')
-        request.user = self.user
-        response = book_list_view(request)
-        self.assertIn(b'Book Title 2', response.content)
-        
     def test_book_detail_view_status_code(self):
         request = self.request.get('')
         request.user = self.user
         response = book_detail_view(request, f'{Book.objects.get(title="Book Title 1").id }')
         self.assertEqual(response.status_code, 200)
 
-    def test_book_list_view_status_code(self):
-        request = self.request.get('')
-        request.user = self.user
-        response = book_list_view(request)
-        self.assertEqual(response.status_code, 200)
-
-    # pls explain this test
+    # -------------------------->>> pls explain this test?
     def test_book_detail_view_failure(self):
         request = self.request.get('')
         request.user = self.user
         with self.assertRaises(Http404):
             book_detail_view(request, '0')
+
+    # Book List View Tests
+    def test_book_list_view_context(self):
+        request = self.request.get('')
+        request.user = self.user
+        response = book_list_view(request)
+        self.assertIn(b'Book Title 2', response.content)
+
+    def test_book_list_view_status_code(self):
+        request = self.request.get('')
+        request.user = self.user
+        response = book_list_view(request)
+        self.assertEqual(response.status_code, 200)
         
+    # ----------------------------->>> and why it does not work the same here
     # def test_book_list_view_failure(self):
     #     request = self.request.get('')
     #     request.user = self.user
