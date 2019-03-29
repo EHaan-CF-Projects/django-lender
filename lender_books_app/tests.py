@@ -2,6 +2,7 @@ from django.test import TestCase, RequestFactory
 from .models import Book
 from django.contrib.auth.models import User
 from .views import book_detail_view, book_list_view
+from django.http import Http404
 
 
 # Create your tests here.
@@ -62,9 +63,13 @@ class TestBookViews(TestCase):
 
     # pls explain this test
     def test_book_detail_view_failure(self):
-        from django.http import Http404
         request = self.request.get('')
         request.user = self.user
         with self.assertRaises(Http404):
             book_detail_view(request, '0')
         
+    # def test_book_list_view_failure(self):
+    #     request = self.request.get('')
+    #     request.user = self.user
+    #     with self.assertRaises(Http404):
+    #         book_list_view(request)
