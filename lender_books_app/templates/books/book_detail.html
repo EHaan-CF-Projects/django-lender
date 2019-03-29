@@ -1,10 +1,15 @@
 {% extends 'generic/base.html' %}
+{% load template_extras %}
+
 
 {% block title %}Detail{% endblock title %}
 
 {% block content %}
 <div>
-    <h3>{{ book.title}} : {{ book.author }}</h3>
-    <h2>{{ book.status }}</h2>
+    <h3><span>{{ book.title}}</span> by {{ book.author }}</h3>
+    <h2>Status: {{ book.status }}</h2>
+    <p>Added to collection: {{ book.date_added | get_date }}</p>
+    <p>Last checked out: {{ book.last_borrowed | get_date }}</p>
+    
 </div>
 {% endblock content %}
