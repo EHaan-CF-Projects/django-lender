@@ -1,14 +1,15 @@
 from django.test import TestCase, RequestFactory
 from .models import Book
+from django.contrib.auth.models import User
+from .views import book_detail_view, book_list_view
 
 
 # Create your tests here.
 class TestBookModel(TestCase):
-
-# Is 'setUp' a special django function? It would not pass as 'set_up' or 'setup'.
     def setUp(self):
-        Book.objects.create(title='Book Title 1', author='Author', year='1990')
-        Book.objects.create(title='Book Title 2', author='Author 2', year='2000')
+        user = User.objects.create_user('Kaja', 'Schwartzekatze')
+        Book.objects.create(title='Book Title 1', author='Author', year='1990', user=user)
+        Book.objects.create(title='Book Title 2', author='Author 2', year='2000', user=user)
 
     def test_book_titles(self):
         book_one = Book.objects.get(title='Book Title 1')
@@ -31,18 +32,39 @@ class TestBookModel(TestCase):
 class TestBookViews(TestCase):
     def setUp(self):
         self.request = RequestFactory()
-
-        Book.objects.create(title='Book Title 1', author='Author', year='1990')
-        Book.objects.create(title='Book Title 2', author='Author 2', year='2000')
+        self.user = User.objects.create_user('Kaja', 'Schwartzekatze')
+        Book.objects.create(title='Book Title 1', author='Author', year='1990', user=self.user)
+        Book.objects.create(title='Book Title 2', author='Author 2', year='2000', user=self.user)
 
     def test_book_detail_view_context(self):
-        from .views import book_detail_view
         request = self.request.get('')
+        request.user = self.user
         response = book_detail_view(request, f'{ Book.objects.get(title="Book Title 1").id }')
         self.assertIn(b'Author', response.content)
 
     def test_book_list_view_context(self):
-        from .views import book_list_view
         request = self.request.get('')
+        request.user = self.user
         response = book_list_view(request)
         self.assertIn(b'Book Title 2', response.content)
+        
+    def test_book_detail_view_status_code(self):
+        request = self.request.get('')
+        request.user = self.user
+        response = book_detail_view(request, f'{Book.objects.get(title="Book Title 1").id }')
+        self.assertEqual(response.status_code, 200)
+
+    def test_book_list_view_status_code(self):
+        request = self.request.get('')
+        request.user = self.user
+        response = book_list_view(request)
+        self.assertEqual(response.status_code, 200)
+
+    # pls explain this test
+    def test_book_detail_view_failure(self):
+        from django.http import Http404
+        request = self.request.get('')
+        request.user = self.user
+        with self.assertRaises(Http404):
+            book_detail_view(request, '0')
+        
