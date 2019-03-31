@@ -6,10 +6,12 @@
 
 {% block content %}
 <div>
-    <h3><span>{{ book.title}}</span> by {{ book.author }}</h3>
-    <h2>Status: {{ book.status }}</h2>
-    <p>Added to collection: {{ book.date_added | get_date }}</p>
-    <p>Last checked out: {{ book.last_borrowed | get_date }}</p>
-    
+    <h4 class="book_detail">Status: {{ book.status }}</h4>
+    <h3 class="book_detail">{{ book.title}}</h3>
+    <h4 class="book_detail">by {{ book.author }}</h4>
+    <div class="book_detail">
+        <p>Added to collection: {{ book.date_added | get_date }}</p>
+        <p>Last checked out: {{ book.last_borrowed | get_date }}</p>
+    </div>
 </div>
 {% endblock content %}
