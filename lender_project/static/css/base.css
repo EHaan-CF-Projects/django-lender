@@ -1,6 +1,5 @@
 /* FONTS */
 h1, h2, h3, h4, a, p {
-    color: whitesmoke;
     font-family: 'ZCOOL XiaoWei', serif;
 }
 
@@ -22,12 +21,12 @@ a:hover {
     font-weight: 700;
 }
 
-body {
+/* body {
     background-image: url('../assets/ed-robertson-1373938-unsplash\ \(1\).jpg');
     background-size: cover;
     background-attachment: no-repeat;
     width: 100%;
-}
+} */
 
 .container {
     display: grid;
@@ -41,7 +40,11 @@ body {
 header {
     padding-left: 10%;
     grid-area: header;
-    background-color: rgba(166, 42, 42, 0.822);
+    background-image: url('../assets/ed-robertson-1373938-unsplash\ \(1\).jpg');
+    background-size: cover;
+    background-attachment: no-repeat;
+    width: 100%;
+    opacity: .3;
 }
 
 header h1 {
@@ -65,7 +68,6 @@ main {
     grid-area: main;
     width: 80%;
     margin: 0 auto;
-    background-color: rgba(49, 49, 49, 0.322);
 }
 
 .welcome_banner {
