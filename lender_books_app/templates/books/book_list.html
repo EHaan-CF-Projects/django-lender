@@ -3,9 +3,10 @@
 {% block title %}List{% endblock title %}
 
 {% block content %}
+<h2>Current Bookshelf</h2>
 <div>
     {% for book in books %}
-    <h3><a href="{% url "book_detail" pk=book.id %}">{{ book.title }} || {{ book.author }}</a></h3>
+    <h4 class="listed-book"><a href="{% url "book_detail" pk=book.id %}">{{ book.title }} <span>|| {{ book.author }}</span></a></h4>
     {% endfor %}
 </div>
 {% endblock content %}

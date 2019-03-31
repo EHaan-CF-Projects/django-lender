@@ -1,8 +1,138 @@
-* {
-    background-color: blanchedalmond;
+/* FONTS */
+h1, h2, h3, h4, a, p, .button {
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+h1 {
+    font-size: 55px;
+}
+
+h2 {
+    font-size: 45px;
+}
+
+h3 {
+    font-size: 36px;
+}
+
+h4 {
+    font-size: 28px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
 }
 
 a:hover {
-    font-style: italic;
+    color:  rgba(244, 67, 54, 0.801);
+    font-weight: 700;
 }
 
+/* Layout */
+
+.grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 15% 78% 7%;
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+}
+
+/* HEADER & NAV */
+
+header {
+    grid-area: header;
+    width: 100%;
+    position: relative;
+}
+
+header::after {
+    content: "";
+    width: 100%;
+    background-image: url('../assets/ed-robertson-1373938-unsplash\ \(1\).jpg');
+    background-size: cover;
+    background-attachment: no-repeat;
+    opacity: .3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+header h1, nav {
+    padding-top: 10px;
+    padding-left: 10%;
+}
+
+.nav li {
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.nav li:after {
+    content: ' || ';
+}
+
+.nav li:last-child:after {
+    content: ''
+}
+
+/* BODY */
+
+main {
+    grid-area: main;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+main h2 {
+    margin-bottom: 20px;
+}
+
+.welcome_banner {
+    text-align: center;
+}
+
+form p, .button {
+    margin-top: 5%;
+}
+
+.button {
+    border-radius: 8px;
+    background-color: rgba(244, 67, 54, 0.801);
+    border: none;
+    color: whitesmoke;
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* BOOK LIST */
+.listed-book {
+    margin-bottom: 2%;
+
+}
+
+span {
+    font-size: 22px;
+}
+
+/* BOOK DETAIL */
+.book_detail {
+    margin-bottom: 2%;
+}
+
+/* FOOTER */
+footer {
+    grid-area: footer;
+    text-align: center;
+    padding-top: 20px;
+}
