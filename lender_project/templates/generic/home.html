@@ -3,5 +3,10 @@
 {% block title %}HOME{% endblock title %}
 
 {% block content %}
-<p> {{ message }} </p>
+    {% if user.is_authenticated %}
+    <div class="welcome_banner">
+        <h2>welcome, {{user.username }}!</h2>
+        <h3>a world awaits...</h3>
+    </div>
+    {% endif %}
 {% endblock content %}

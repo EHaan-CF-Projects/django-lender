@@ -1,8 +1,80 @@
-* {
-    background-color: blanchedalmond;
+/* FONTS */
+h1, h2, h3, h4, a, p {
+    color: whitesmoke;
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+h1 {
+    font-size: 55px;
+}
+
+h2 {
+    font-size: 45px;
+}
+
+h3 {
+    font-size: 36px;
 }
 
 a:hover {
     font-style: italic;
+    color: aquamarine;
+    font-weight: 700;
 }
 
+body {
+    background-image: url('../assets/ed-robertson-1373938-unsplash\ \(1\).jpg');
+    background-size: cover;
+    background-attachment: no-repeat;
+    width: 100%;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 15% 78% 7%;
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+}
+
+header {
+    padding-left: 10%;
+    grid-area: header;
+    background-color: rgba(166, 42, 42, 0.822);
+}
+
+header h1 {
+    padding-top: 10px;
+}
+
+.nav a {
+    text-decoration: none;
+}
+
+.nav li {
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.nav li:after {
+    content: ' || ';
+}
+
+main {
+    grid-area: main;
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgba(49, 49, 49, 0.322);
+}
+
+.welcome_banner {
+    text-align: center;
+}
+
+footer {
+    grid-area: footer;
+    background-color: rgba(166, 42, 42, 0.822);
+    text-align: center;
+    padding-top: 20px;
+}
