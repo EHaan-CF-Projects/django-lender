@@ -5,7 +5,16 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Book(models.Model):
-    """
+    """Books Database:
+
+    Parameters
+        user (str): username, recieved from User database
+        title (str): book title
+        author (str): author name
+        year (str): published year
+        status: selection based on availability
+        date_added (datetime obj): date added to the database
+        last_borrowed (datetime obj): modified date
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books', null=True)
     title = models.CharField(max_length=48)
