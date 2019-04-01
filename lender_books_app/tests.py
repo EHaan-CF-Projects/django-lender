@@ -36,12 +36,6 @@ class TestBookModel(TestCase):
         self.assertEqual(book_one.user.username, 'Kaja')
         self.assertEqual(book_two.user.username, 'Kaja')
 
-    # ---------------------------->>> How do I test the password hash?
-    # def test_book_user(self):
-    #     book_one = Book.objects.get(title='Book Title 1')
-    #     book_two = Book.objects.get(title='Book Title 2')
-    #     self.assertEqual(book_one.user.password, 'Schwartzekatze')
-    #     self.assertEqual(book_two.user.password, 'Schwartzekatze')
 
 class TestBookViews(TestCase):
     def setUp(self):
@@ -63,7 +57,7 @@ class TestBookViews(TestCase):
         response = book_detail_view(request, f'{Book.objects.get(title="Book Title 1").id }')
         self.assertEqual(response.status_code, 200)
 
-    # -------------------------->>> pls explain this test?
+    # -------------------------->>> pls explain this test? (and see below)
     def test_book_detail_view_failure(self):
         request = self.request.get('')
         request.user = self.user
@@ -83,9 +77,10 @@ class TestBookViews(TestCase):
         response = book_list_view(request)
         self.assertEqual(response.status_code, 200)
         
-    # ----------------------------->>> and why it does not work the same here
+    # ----------------------------->>> and why it does not work the same here -- and why does the error show up for a different test?
     # def test_book_list_view_failure(self):
     #     request = self.request.get('')
     #     request.user = self.user
     #     with self.assertRaises(Http404):
     #         book_list_view(request)
+        

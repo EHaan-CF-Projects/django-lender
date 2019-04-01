@@ -1,5 +1,6 @@
 autopep8==1.4.3
 confusable-homoglyphs==3.2.0
+coverage==3.6
 Django==2.1.7
 django-registration==3.0
 pep8==1.7.1
